@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2022 Alfonso E.M. <alfonso@el-magnifico.org> -->
+<component type="desktop-application">
+  <id>firefirma</id>
+  <metadata_license>FSFAP</metadata_license>
+  <project_license>GPL-2.0+</project_license>
+  <name>Fire Firma</name>
+  <summary>Todo en uno para la firma electrónica</summary>
+
+  <description>
+    <p>
+      Navegador con todo integrado para poder usar aplicaciones 
+      de firma electrónica. Agrega tu certificado personal y listo.
+    </p>
+  </description>
+
+  <launchable type="desktop-id">firefirma.desktop</launchable>
+
+
+  <url type="homepage">https://github.com/alfem/FireFirma</url>
+  <project_group>Mozilla</project_group>
+
+</component>
+
