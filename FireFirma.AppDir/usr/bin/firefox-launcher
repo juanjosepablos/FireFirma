@@ -1,9 +1,35 @@
-#!/bin/sh
+#!/bin/bash
+
+POSITIONAL_ARGS=()
+RESET_PROFILE=false
+
+#Procesamos los parámetros que se le pasen al AppImage
+
+while [[ $# -gt 0 ]]; do
+  case $1 in
+#Con -r o --reset se eliminará el perfil al salir
+    -r|--reset)
+      echo "El perfil de usuario será eliminado al cerrar la aplicación"
+      RESET_PROFILE=yes
+      shift 
+      ;;
+# Los demás parámetros se le pasarán a Firefox directamente
+    *)
+      POSITIONAL_ARGS+=("$1") 
+      shift 
+      ;;
+  esac
+done
+
+set -- "${POSITIONAL_ARGS[@]}" 
 
 #Creamos un perfil nuevo de Firefox 
 
 if [ ! -d $HOME/firefirma/profile ]; then
     mkdir -p $HOME/firefirma/profile
+
+echo $@
+
     cat << EOF >$HOME/firefirma/profiles.ini
 [General]
 StartWithLastProfile=1
@@ -16,9 +42,13 @@ EOF
 fi
 
 HERE="$(dirname "$(readlink -f "${0}")")"
+cd ${HERE}
 export PATH="${HERE}"/usr/bin/:"${HERE}"/usr/sbin/::"${HERE}"/bin/:"${HERE}"/sbin/:"${PATH}"
 export LD_LIBRARY_PATH="${HERE}"/usr/lib/:"${HERE}"/usr/lib/i386-linux-gnu/:"${HERE}"/usr/lib/x86_64-linux-gnu/:"${HERE}"/usr/lib32/:"${HERE}"/usr/lib64/:"${HERE}"/lib/:"${HERE}"/lib/i386-linux-gnu/:"${HERE}"/lib/x86_64-linux-gnu/:"${HERE}"/lib32/:"${HERE}"/lib64/:"${LD_LIBRARY_PATH}"
 export XDG_DATA_DIRS="${HERE}"/usr/share/:"${XDG_DATA_DIRS}"
 export GSETTINGS_SCHEMA_DIR="${HERE}"/usr/share/glib-2.0/schemas/:"${GSETTINGS_SCHEMA_DIR}"
-exec $HERE/firefox --no-remote --new-window --profile $HOME/firefirma/profile "$@" file://$APPDIR/web/index.html
+$HERE/firefox --no-remote --new-window --profile $HOME/firefirma/profile "$@" file://$APPDIR/web/index.html
 
+if [ $RESET_PROFILE == yes ]; then
+  rm -rf $HOME/firefirma
+fi
