@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+NoDisplay=false
+Exec=/home/USUARIO/FireFirma-2.1.AppImage 
+Name=FireFirma
+Comment=FireFirma: El todo en uno que firma siempre
