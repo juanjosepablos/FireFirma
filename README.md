@@ -30,7 +30,7 @@ Una vez que el navegador ha reconocido la url y ha llamado al programa AutoFirma
 Firefox puede usar los certificados almacenados en varios sitios: en su propio almacén (que viene de serie), en el del sistema operativo, en el del usuario, en una tarjeta criptográfica, en un pendrive... etc. Lo importante es que debe encontrar el certificado de AutoFirma o no podrá comunicarse con la aplicación. El instalador oficial de AutoFirma coloca este certificado en el directorio del usuario. Suele funcionar, pero si se crea un nuevo usuario o un nuevo perfil después de haber hecho ésta instalación, estos no podrán firmar nada. Parece por tanto preferible instalar el certificado de Autofirma en el propio sistema operativo, de forma que esté disponible para todos los usuarios y perfiles, actuales y futuros. Para eso hay que 'engañar' un poco a Firefox cambiando la librería que usa para acceder a sus Autoridades de Certificación (*libnssckbi.so*) por otra que usa las Autoridades del sistema (*p11-kit-trust.so*). 
 
 ### Almacén de Certificados del Usuario:
-Por último necesitaremos el Certificado de la persona que va a firmar, y que se carga desde Firefox con el *Menú->Preferencias->Privacidad y Seguridad*. Abajo a la derecha hay un botón *Ver Certificados* que abre una nueva ventana. Eliges la solapa *Sus Certificados* e importas tu certificado personal. 
+Por último necesitaremos el Certificado de la persona que va a firmar, y que se carga desde Firefox con el *Menú->Ajustes->Privacidad y Seguridad*. Abajo a la derecha hay un botón *Ver Certificados* que abre una nueva ventana. Eliges la solapa *Sus Certificados* e importas tu certificado personal. 
 
 
 
